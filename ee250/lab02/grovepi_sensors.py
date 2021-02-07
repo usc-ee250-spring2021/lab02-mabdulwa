@@ -39,5 +39,5 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(PORT))
         
-        ultrasonicValue = grovepi.ultrasonicRead(PORT)
+        ultrasonicValue = str(grovepi.ultrasonicRead(PORT))
         setText("\n" +  ultrasonicValue)
