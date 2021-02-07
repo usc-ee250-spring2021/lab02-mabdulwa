@@ -26,6 +26,8 @@ import grovepi
 from grove_rgb_lcd import *
 
 
+
+
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
 be true"""
@@ -37,6 +39,19 @@ if __name__ == '__main__':
     grovepi.pinMode(potentiometer,"INPUT")
 
 
+    # ---------
+
+    # Reference voltage of ADC is 5v
+    adc_ref = 5
+
+    # Vcc of the grove interface is normally 5v
+    grove_vcc = 5
+
+    # Full value of the rotary angle is 300 degrees, as per it's specs (0 to 300)
+    full_angle = 300
+
+    # ---------
+
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
@@ -45,14 +60,24 @@ if __name__ == '__main__':
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
         # Read sensor values.
-        potentiometerValue = str(grovepi.analogRead(potentiometer))
+        potentiometerValue = grovepi.analogRead(potentiometer)
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
+
+        # ----
+
+        # Calculate voltage
+        voltage = round((float)(potentiometerValue) * adc_ref / 1023, 2)
+
+        # Calculate rotation in degrees (0 to 300)
+        degrees = str(round((voltage * full_angle) / grove_vcc, 2))
+
+        # ----
         
         #-- potentiometerDegree = str(round(potentiometerValue / 10))
 
-        if ultrasonicValue < potentiometerValue:
-          setText(" " + potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
+        if ultrasonicValue < degrees:
+          setText(" " + degrees + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
         else:
-          setText(" " + potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
+          setText(" " + degrees + "cm" + " " + "\n" + ultrasonicValue + "cm")
           setRGB(0,255,128)
