@@ -16,7 +16,6 @@ performance. Because of this, you will not find this in the default directories.
 """
 import sys
 import time
-import math
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
 sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/')
@@ -49,7 +48,7 @@ if __name__ == '__main__':
         potentiometerValue = grovepi.analogRead(potentiometer)
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         
-        potentiometerDegree = str(math.ceil(potentiometerValue / 10))
+        potentiometerDegree = str(round(potentiometerValue / 10, 0))
 
         if ultrasonicValue < potentiometerDegree:
           setText(potentiometerDegree + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
