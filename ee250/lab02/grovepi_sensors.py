@@ -30,14 +30,17 @@ from grove_rgb_lcd import *
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
 be true"""
 if __name__ == '__main__':
-    PORT = 4    # D4
+    ultrasonicPort = 4    # ultrasonic is connected to port D4.
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
 
-        print(grovepi.ultrasonicRead(PORT))
+        print(grovepi.ultrasonicRead(ultrasonicPort))
+
+        setText("Hello world\nLCD test")
+        setRGB(0,128,64)
         
-        ultrasonicValue = str(grovepi.ultrasonicRead(PORT))
-        setText(ultrasonicValue)
+        #ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
+        #setText(ultrasonicValue)
