@@ -53,8 +53,8 @@ if __name__ == '__main__':
         setRGB(0,255,128)
 
         if ultrasonicValue < potentiometerValue:
-        setText(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
-        setRGB(255,0,0)
+          setText(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
+          setRGB(255,0,0)
         
         """
         if ultrasonicValue < potentiometerValue:
