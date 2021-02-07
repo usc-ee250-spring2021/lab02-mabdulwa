@@ -48,11 +48,11 @@ if __name__ == '__main__':
         potentiometerValue = grovepi.analogRead(potentiometer)
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         
-        potentiometerDegree = str(round(potentiometerValue / 10, 0))
+        potentiometerDegree = str(round(potentiometerValue / 10))
 
         if ultrasonicValue < potentiometerDegree:
-          setText(potentiometerDegree + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
+          setText(" " + potentiometerDegree + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
         else:
-          setText(potentiometerDegree + "cm" + " " + "\n" + ultrasonicValue + "cm")
+          setText(" " + potentiometerDegree + "cm" + " " + "\n" + ultrasonicValue + "cm")
           setRGB(0,255,128)
