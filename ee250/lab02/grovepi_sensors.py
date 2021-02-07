@@ -53,6 +53,21 @@ if __name__ == '__main__':
 
     # ---------
 
+    # Read sensor values.
+    potentiometerValue = grovepi.analogRead(potentiometer)
+    ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
+
+    # ----
+
+     # Calculate voltage
+     voltage = round((float)(potentiometerValue) * adc_ref / 1023, 2)
+
+    # Calculate rotation in degrees (0 to 300)
+     degrees = str(round((voltage * full_angle) / grove_vcc, 2))
+
+    # ----
+
+
     setText(" " + degrees + "cm" + " " + "\n" + ultrasonicValue + "cm")
     setRGB(0,255,128)
 
@@ -63,19 +78,7 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
-        # Read sensor values.
-        potentiometerValue = grovepi.analogRead(potentiometer)
-        ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
 
-        # ----
-
-        # Calculate voltage
-        voltage = round((float)(potentiometerValue) * adc_ref / 1023, 2)
-
-        # Calculate rotation in degrees (0 to 300)
-        degrees = str(round((voltage * full_angle) / grove_vcc, 2))
-
-        # ----
         
         #-- potentiometerDegree = str(round(potentiometerValue / 10))
 
