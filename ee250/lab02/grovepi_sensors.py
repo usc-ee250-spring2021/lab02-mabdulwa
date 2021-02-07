@@ -34,9 +34,8 @@ if __name__ == '__main__':
     ultrasonicPort = 4    # ultrasonic is connected to port D4.
     potentiometer = 0     # Rotary Angle Sensor connected to A0.
 
-    grovepi.pinMode(ultrasonicPort,"INPUT")
+    # -- grovepi.pinMode(ultrasonicPort,"INPUT")
     grovepi.pinMode(potentiometer,"INPUT")
-    time.sleep(1)
 
 
     while True:
@@ -53,9 +52,6 @@ if __name__ == '__main__':
         potentiometerDegree = str(math.ceil(potentiometerValue / 10))
 
         if ultrasonicValue < potentiometerDegree:
-          setText(potentiometerDegree + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
-          setRGB(255,0,0)
-        elif ultrasonicValue <= 9:
           setText(potentiometerDegree + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
         else:
