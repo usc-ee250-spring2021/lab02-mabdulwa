@@ -41,14 +41,14 @@ if __name__ == '__main__':
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
-        time.sleep(0.2)
+        time.sleep(0.5)
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
         # Read sensor value from potentiometer
         sensor_value = str(grovepi.analogRead(potentiometer))
-        setText_norefresh(sensor_value)
+        setText(sensor_value)
 
         
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
-        setsetText_norefreshText("\n" + ultrasonicValue)
+        setText("\n" + ultrasonicValue)
