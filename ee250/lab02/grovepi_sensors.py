@@ -46,7 +46,7 @@ if __name__ == '__main__':
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
         # Read sensor values.
-        potentiometerValue = str(grovepi.analogRead(potentiometer))
+        potentiometerValue = str(grovepi.analogRead(round(potentiometer/10)))
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         
 
