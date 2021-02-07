@@ -39,8 +39,8 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
-        setText("Hello world\nLCD test")
-        setRGB(0,128,64)
+        #setText("Hello world\nLCD test")
+        #setRGB(0,128,64)
         
-        #ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
-        #setText(ultrasonicValue)
+        ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
+        setText(ultrasonicValue)
