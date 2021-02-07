@@ -24,7 +24,7 @@ sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/grove_rgb_lc
 
 import grovepi
 from grove_rgb_lcd import *
-from grove.display.jhd1802 import JHD1802
+
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
