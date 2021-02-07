@@ -24,7 +24,6 @@ sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/grove_rgb_lc
 
 import grovepi
 from grove_rgb_lcd import *
-from time import sleep
 
 
 """This if-statement checks if you are running this python file directly. That 
@@ -49,9 +48,6 @@ if __name__ == '__main__':
         # Read sensor values.
         potentiometerValue = str(grovepi.analogRead(potentiometer))
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
-
-        setText(potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
-        setRGB(0,255,128)
         
 
         if ultrasonicValue > potentiometerValue:
