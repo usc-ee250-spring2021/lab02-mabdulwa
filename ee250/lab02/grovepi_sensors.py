@@ -37,9 +37,7 @@ if __name__ == '__main__':
         time.sleep(0.2)
 
         print(grovepi.ultrasonicRead(PORT))
-
-
-        setRGB(0,255,0)
-        buf=list("Grove -Update without erase")
-        setText("".join(buf))
-        time.sleep(1)
+        
+        setText("\n")
+        setText(grovepi.ultrasonicRead(PORT))
+        setRGB(0,128,64)
