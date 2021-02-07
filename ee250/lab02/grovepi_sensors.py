@@ -46,7 +46,12 @@ if __name__ == '__main__':
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
         # Read sensor values.
-        sensor_value = str(grovepi.analogRead(potentiometer))
+        potentiometerValue = str(grovepi.analogRead(potentiometer))
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         
-        setText(sensor_value + "cm" + "\n" + ultrasonicValue + "cm")
+        # ---- setText(potentiometerValue + "cm" + "\n" + ultrasonicValue + "cm")
+
+        if ultrasonicValue < potentiometerValue
+          setText(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
+        else 
+          setText(potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
