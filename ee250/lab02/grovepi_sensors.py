@@ -51,7 +51,7 @@ if __name__ == '__main__':
         
         # ---- setText(potentiometerValue + "cm" + "\n" + ultrasonicValue + "cm")
 
-        if ultrasonicValue < potentiometerValue
+        if ultrasonicValue < potentiometerValue:
           setText(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
-        else 
+        else:
           setText(potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
