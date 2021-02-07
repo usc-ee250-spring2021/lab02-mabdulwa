@@ -37,11 +37,6 @@ if __name__ == '__main__':
     grovepi.pinMode(potentiometer,"INPUT")
     time.sleep(1)
 
-    # Vcc of the grove interface is normally 5v
-    grove_vcc = 5
-
-    # Full value of the rotary angle is 300 degrees, as per it's specs (0 to 300)
-    full_angle = 300
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
@@ -50,17 +45,9 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
-        sensor_value = str(grovepi.analogRead(potentiometer))
-
-        # Calculate voltage
-        voltage = round((float)(sensor_value) * adc_ref / 1023, 2)
-
-        # Calculate rotation in degrees (0 to 300)
-        degrees = round((voltage * full_angle) / grove_vcc, 2)
-
         # Read sensor value from potentiometer
-
-        setText(potentiometer)
+        sensor_value = str(grovepi.analogRead(potentiometer))
+        setText(sensor_value)
 
         
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
