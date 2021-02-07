@@ -41,7 +41,7 @@ if __name__ == '__main__':
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
         #sleep for a reasonable time of 200ms between each iteration.
-        time.sleep(0.5)
+        time.sleep(0.2)
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
@@ -50,10 +50,7 @@ if __name__ == '__main__':
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         
 
-        if ultrasonicValue > potentiometerValue:
-          setText(potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
-          setRGB(0,255,128)
-        elif ultrasonicValue == potentiometerValue:
+        if ultrasonicValue >= potentiometerValue:
           setText(potentiometerValue + "cm" + " " + "\n" + ultrasonicValue + "cm")
           setRGB(0,255,128)
         else:
