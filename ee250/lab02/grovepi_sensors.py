@@ -18,12 +18,13 @@ import sys
 import time
 # By appending the folder of all the GrovePi libraries to the system path here,
 # we are successfully `import grovepi`
-sys.path.append('../../Software/Python/')
+sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/')
 # This append is to support importing the LCD library.
-sys.path.append('../../Software/Python/grove_rgb_lcd')
+sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/grove_rgb_lcd')
 
 import grovepi
 from grove_rgb_lcd import *
+from grove.display.jhd1802 import JHD1802
 
 """This if-statement checks if you are running this python file directly. That 
 is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
@@ -38,6 +39,5 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(PORT))
 
-        setText("\n")
-        textCommand(grovepi.ultrasonicRead(PORT))
-        setRGB(0,128,64)
+        lcd.setCursor(0, 0)
+        lcd.write('hello, world!!!')
