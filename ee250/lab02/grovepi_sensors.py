@@ -31,6 +31,17 @@ is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will
 be true"""
 if __name__ == '__main__':
     ultrasonicPort = 4    # ultrasonic is connected to port D4.
+    potentiometer = 0     # Rotary Angle Sensor connected to A0.
+
+    grovepi.pinMode(ultrasonicPort,"INPUT")
+    grovepi.pinMode(potentiometer,"INPUT")
+    time.sleep(1)
+
+    # Vcc of the grove interface is normally 5v
+    grove_vcc = 5
+
+    # Full value of the rotary angle is 300 degrees, as per it's specs (0 to 300)
+    full_angle = 300
 
     while True:
         #So we do not poll the sensors too quickly which may introduce noise,
@@ -39,8 +50,13 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
-        #setText("Hello world\nLCD test")
-        #setRGB(0,128,64)
+        # Calculate rotation in degrees (0 to 300)
+        degrees = round((voltage * full_angle) / grove_vcc, 2)
+
+        # Read sensor value from potentiometer
+        sensor_value = str(grovepi.analogRead(potentiometer))
+        setText(potentiometer)
+
         
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
         setText("\n" + ultrasonicValue)
