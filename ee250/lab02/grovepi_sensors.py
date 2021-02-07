@@ -50,6 +50,8 @@ if __name__ == '__main__':
 
         print(grovepi.ultrasonicRead(ultrasonicPort))
 
+        sensor_value = str(grovepi.analogRead(potentiometer))
+
         # Calculate voltage
         voltage = round((float)(sensor_value) * adc_ref / 1023, 2)
 
@@ -57,7 +59,7 @@ if __name__ == '__main__':
         degrees = round((voltage * full_angle) / grove_vcc, 2)
 
         # Read sensor value from potentiometer
-        sensor_value = str(grovepi.analogRead(potentiometer))
+
         setText(potentiometer)
 
         
