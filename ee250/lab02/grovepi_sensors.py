@@ -1,84 +1,23 @@
-""" EE 250L Lab 02: GrovePi Sensors
-
-List team members here.
-
-Insert Github repository link here.
-"""
-
-"""python3 interpreters in Ubuntu (and other linux distros) will look in a 
-default set of directories for modules when a program tries to `import` one. 
-Examples of some default directories are (but not limited to):
-  /usr/lib/python3.5
-  /usr/local/lib/python3.5/dist-packages
-
-The `sys` module, however, is a builtin that is written in and compiled in C for
-performance. Because of this, you will not find this in the default directories.
-"""
-import sys
-import time
-# By appending the folder of all the GrovePi libraries to the system path here,
-# we are successfully `import grovepi`
-sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/')
-# This append is to support importing the LCD library.
-sys.path.append('/home/ee250/Desktop/lab02-mabdulwa/Software/Python/grove_rgb_lcd')
-
-import grovepi
+from grovepi import *
 from grove_rgb_lcd import *
+from time import sleep
+from math import isnan
 
+dht_sensor_port = 7 # connect the DHt sensor to port 7
+dht_sensor_type = 1 # use 0 for the blue-colored sensor and 1 for the white-colored sensor
 
+# set green as backlight color
+# we need to do it just once
+# setting the backlight color once reduces the amount of data transfer over the I2C line
+setRGB(0,255,0)
 
+while True:
+	try:
+        # get the temperature and Humidity from the DHT sensor
+		[ temp,hum ] = dht(dht_sensor_port,dht_sensor_type)		
+		print("temp =", temp, "C\thumidity =", hum,"%")
 
-"""This if-statement checks if you are running this python file directly. That 
-is, if you run `python3 grovepi_sensors.py` in terminal, this if-statement will 
-be true"""
-if __name__ == '__main__':
-    ultrasonicPort = 4    # ultrasonic is connected to port D4.
-    potentiometer = 0     # Rotary Angle Sensor connected to A0.
-
-    # -- grovepi.pinMode(ultrasonicPort,"INPUT")
-    grovepi.pinMode(potentiometer,"INPUT")
-    time.sleep(1)
-
-
-    # ---------
-
-    # Reference voltage of ADC is 5v
-    adc_ref = 5
-
-    # Vcc of the grove interface is normally 5v
-    grove_vcc = 5
-
-    # Full value of the rotary angle is 300 degrees, as per it's specs (0 to 300)
-    full_angle = 300
-
-    # ---------
-
-    while True:
-        #So we do not poll the sensors too quickly which may introduce noise,
-        #sleep for a reasonable time of 200ms between each iteration.
-        # -- time.sleep(0.2)
-
-        print(grovepi.ultrasonicRead(ultrasonicPort))
-
-        # Read sensor values.
-        potentiometerValue = grovepi.analogRead(potentiometer)
-        ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
-
-        # ----
-
-        # Calculate voltage
-        voltage = round((float)(potentiometerValue) * adc_ref / 1023, 2)
-
-        # Calculate rotation in degrees (0 to 300)
-        degrees = str(round((voltage * full_angle) / grove_vcc, 2))
-
-        # ----
-        
-        #-- potentiometerDegree = str(round(potentiometerValue / 10))
-
-        if ultrasonicValue < degrees:
-          setText(" " + degrees + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
-          setRGB(255,0,0)
-        else:
-          setText(" " + degrees + "cm" + " " + "\n" + ultrasonicValue + "cm")
-          setRGB(0,255,128)
+		# check if we have nans
+		# if so, then raise a type error exception
+		if isnan(temp) is True or isnan(hum) is True:
+			raise TypeError('nan error')
