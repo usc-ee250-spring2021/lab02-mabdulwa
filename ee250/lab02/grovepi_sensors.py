@@ -49,7 +49,7 @@ if __name__ == '__main__':
         potentiometerValue = str(grovepi.analogRead(potentiometer))
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
 
-        if ultrasonicPort < potentiometer:
+        if grovepi.ultrasonicRead(ultrasonicPort) < grovepi.analogRead(potentiometer):
           setText_norefresh(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
         else:
