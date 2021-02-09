@@ -53,5 +53,5 @@ if __name__ == '__main__':
           setText_norefresh(potentiometerValue + "cm" + " " + "OBJ PRES" + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
         else:
-          setText_norefresh(potentiometerValue + "cm" + " " + "         " + "\n" + ultrasonicValue + "cm")
+          setText_norefresh(potentiometerValue + "cm" + " " + "           " + "\n" + ultrasonicValue + "cm")
           setRGB(0,255,128)
