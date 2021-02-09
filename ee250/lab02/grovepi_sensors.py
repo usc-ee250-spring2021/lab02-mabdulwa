@@ -1,8 +1,8 @@
 """ EE 250L Lab 02: GrovePi Sensors
 
-List team members here.
+Mohamed Abdulwahab
 
-Insert Github repository link here.
+https://github.com/usc-ee250-spring2021/lab02-mabdulwa
 """
 
 """python3 interpreters in Ubuntu (and other linux distros) will look in a 
@@ -33,7 +33,8 @@ if __name__ == '__main__':
     ultrasonicPort = 4    # ultrasonic is connected to port D4.
     potentiometer = 0     # Rotary Angle Sensor connected to A0.
 
-    # -- grovepi.pinMode(ultrasonicPort,"INPUT")
+    # Specify connection type (input/output).
+    grovepi.pinMode(ultrasonicPort,"INPUT")
     grovepi.pinMode(potentiometer,"INPUT")
 
 
@@ -42,13 +43,15 @@ if __name__ == '__main__':
         #sleep for a reasonable time of 200ms between each iteration.
         time.sleep(0.2)
 
+        # print values on the command line screen.
         print(grovepi.ultrasonicRead(ultrasonicPort))
         print(grovepi.analogRead(potentiometer))
 
-        # Read sensor values.
+        # Read sensor values and convert them into strings (because setText_norefresh() does not accept int).
         potentiometerValue = str(grovepi.analogRead(potentiometer))
         ultrasonicValue = str(grovepi.ultrasonicRead(ultrasonicPort))
 
+        # Logical condition to detect if an object is pressent or not and display information on the LCD accordingly.
         if grovepi.ultrasonicRead(ultrasonicPort) < grovepi.analogRead(potentiometer):
           setText_norefresh(potentiometerValue + "cm" + " " + "OBJ PRES  " + "\n" + ultrasonicValue + "cm")
           setRGB(255,0,0)
