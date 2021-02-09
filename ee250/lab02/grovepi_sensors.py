@@ -2,7 +2,7 @@
 
 Mohamed Abdulwahab
 
-https://github.com/usc-ee250-spring2021/lab02-mabdulwa
+https://github.com/usc-ee250-spring2021/lab02-mabdulwa/blob/lab02/ee250/lab02/grovepi_sensors.py
 """
 
 """python3 interpreters in Ubuntu (and other linux distros) will look in a 
